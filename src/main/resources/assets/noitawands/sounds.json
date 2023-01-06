@@ -1,0 +1,6 @@
+{
+  "arrow_fired" : {
+    "subtitle" : "noitawands.subtitle.arrow_fired",
+    "sounds" : [ "noitawands:arrow_fired" ]
+  }
+}
