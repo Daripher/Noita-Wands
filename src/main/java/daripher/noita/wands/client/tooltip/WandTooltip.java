@@ -1,6 +1,10 @@
 package daripher.noita.wands.client.tooltip;
 
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
 
 public class WandTooltip implements TooltipComponent {
 	public final boolean shuffle;
@@ -11,8 +15,10 @@ public class WandTooltip implements TooltipComponent {
 	public final int manaRecharge;
 	public final int capacity;
 	public final float spread;
+	public final LazyOptional<IItemHandler> inventory;
 
-	public WandTooltip(boolean shuffle, int spellsPerCast, float castDelay, float rechargeTime, int manaMax, int manaRecharge, int capacity, float spread) {
+	public WandTooltip(boolean shuffle, int spellsPerCast, float castDelay, float rechargeTime, int manaMax, int manaRecharge, int capacity, float spread,
+			@NotNull LazyOptional<IItemHandler> inventory) {
 		this.shuffle = shuffle;
 		this.spellsPerCast = spellsPerCast;
 		this.castDelay = castDelay;
@@ -21,5 +27,6 @@ public class WandTooltip implements TooltipComponent {
 		this.manaRecharge = manaRecharge;
 		this.capacity = capacity;
 		this.spread = spread;
+		this.inventory = inventory;
 	}
 }

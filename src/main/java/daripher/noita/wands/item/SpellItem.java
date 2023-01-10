@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class SpellItem extends Item {
 	public SpellItem() {
-		super(new Properties().tab(CreativeModeTab.TAB_MISC));
+		super(new Properties().tab(CreativeModeTab.TAB_MISC).stacksTo(1));
 	}
 
 	@Override

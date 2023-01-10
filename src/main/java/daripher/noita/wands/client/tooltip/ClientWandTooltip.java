@@ -8,7 +8,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Matrix4f;
 
 import daripher.noita.wands.NoitaWandsMod;
-import daripher.noita.wands.init.ItemInit;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
@@ -24,10 +23,10 @@ public class ClientWandTooltip implements ClientTooltipComponent {
 	private static final int TEXT_SPACING = 7;
 	private List<Component> statComponents = new ArrayList<>();
 	private List<Component> statValuesComponents = new ArrayList<>();
-	private final int capacity;
+	private final WandTooltip tooltip;
 
 	public ClientWandTooltip(WandTooltip tooltip) {
-		this.capacity = tooltip.capacity;
+		this.tooltip = tooltip;
 		addStatsComponents();
 		addStatsValuesComponents(tooltip);
 	}
@@ -71,16 +70,32 @@ public class ClientWandTooltip implements ClientTooltipComponent {
 		RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
 		RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
 
-		for (int i = 0; i < capacity; i++) {
-			GuiComponent.blit(poseStack, x + i * 19, y + 84, 0, 0, 7, 18, 18, 256, 256);
-		}
+		tooltip.inventory.ifPresent(inventory -> {
+			for (int i = 0; i < tooltip.capacity; i++) {
+				ItemStack stackInSlot = inventory.getStackInSlot(i);
+				int slotTexture = 0;
+
+				if (!stackInSlot.isEmpty()) {
+					slotTexture = 1;
+				}
+
+				GuiComponent.blit(poseStack, x + i * 19, y + 84, 0, 18 * slotTexture, 7, 18, 18, 256, 256);
+			}
+		});
 	}
 
 	private void renderSpells(int x, int y, PoseStack poseStack, ItemRenderer itemRenderer) {
 		RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
-		RenderSystem.setShaderTexture(0, TEXTURE_LOCATION);
-		GuiComponent.blit(poseStack, x + 0 * 19, y + 84, 0, 18, 7, 18, 18, 256, 256);
-		itemRenderer.renderAndDecorateItem(new ItemStack(ItemInit.ARROW_SPELL.get()), x + 0 * 19 + 1, y + 84 + 1);
+
+		tooltip.inventory.ifPresent(inventory -> {
+			for (int i = 0; i < tooltip.capacity; i++) {
+				ItemStack stackInSlot = inventory.getStackInSlot(i);
+
+				if (!stackInSlot.isEmpty()) {
+					itemRenderer.renderAndDecorateItem(stackInSlot, x + i * 19 + 1, y + 84 + 1);
+				}
+			}
+		});
 	}
 
 	private void renderStatIcons(int x, int y, PoseStack poseStack) {

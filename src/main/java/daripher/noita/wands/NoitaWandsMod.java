@@ -12,7 +12,8 @@ public class NoitaWandsMod {
 	public NoitaWandsMod() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		ItemInit.REGISTRY.register(modEventBus);
-		EntityTypeInit.REGISTRY.register(modEventBus);
-		SoundEventInit.REGISTRY.register(modEventBus);
+		EntityInit.REGISTRY.register(modEventBus);
+		SoundInit.REGISTRY.register(modEventBus);
+		MenuInit.REGISTRY.register(modEventBus);
 	}
 }

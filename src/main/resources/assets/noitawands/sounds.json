@@ -1,6 +1,6 @@
 {
   "arrow_fired" : {
     "subtitle" : "noitawands.subtitle.arrow_fired",
-    "sounds" : [ "noitawands:arrow_fired" ]
+    "sounds" : [ "noitawands:bullet_arrow_01", "noitawands:bullet_arrow_02", "noitawands:bullet_arrow_03" ]
   }
 }

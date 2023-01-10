@@ -11,6 +11,6 @@ public class ItemInit {
 	public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, NoitaWandsMod.MOD_ID);
 
 	public static final RegistryObject<Item> WAND = REGISTRY.register("wand", WandItem::new);
-	
+
 	public static final RegistryObject<Item> ARROW_SPELL = REGISTRY.register("arrow_spell", SpellItem::new);
 }

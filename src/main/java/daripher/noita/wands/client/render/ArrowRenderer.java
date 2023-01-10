@@ -7,7 +7,7 @@ import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 
 import daripher.noita.wands.NoitaWandsMod;
-import daripher.noita.wands.entity.projectile.Arrow;
+import daripher.noita.wands.entity.Arrow;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;

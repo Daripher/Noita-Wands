@@ -1,6 +1,6 @@
-package daripher.noita.wands.entity.projectile;
+package daripher.noita.wands.entity;
 
-import daripher.noita.wands.init.EntityTypeInit;
+import daripher.noita.wands.init.EntityInit;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -10,11 +10,12 @@ import net.minecraft.world.phys.Vec3;
 
 public class Arrow extends AbstractArrow {
 	public Arrow(Level level) {
-		super(EntityTypeInit.ARROW.get(), level);
+		this(EntityInit.ARROW.get(), level);
 	}
 
 	private Arrow(EntityType<? extends Arrow> type, Level level) {
 		super(type, level);
+		pickup = Pickup.DISALLOWED;
 	}
 
 	@Override
@@ -22,11 +23,6 @@ public class Arrow extends AbstractArrow {
 		super.tick();
 		Vec3 prevMovement = this.getDeltaMovement();
 		setDeltaMovement(prevMovement.x, prevMovement.y - getMass(), prevMovement.z);
-	}
-
-	@Override
-	public boolean isPickable() {
-		return false;
 	}
 
 	@Override
